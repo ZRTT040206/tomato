@@ -6,7 +6,7 @@ public partial class Main : Node2D
 {
     private Label la;
     private Timer times;
-
+    private int  Couts = 0;
     public override void _Ready()
     {
         la = GetNode<Label>("/root/main/Label");
@@ -34,8 +34,17 @@ public partial class Main : Node2D
     }
     private void clickButton()
     {
+        if(Couts<600){
         PackedScene newScene = GD.Load<PackedScene>("res://Mission.tscn");
         Node nodes = newScene.Instantiate();
         this.GetTree().CurrentScene.AddChild(nodes);
+        Button buts = nodes.GetNode<Button>("Button");
+        buts.Position = new Vector2(100,100 + Couts); 
+        Couts+=150;
+        }
+        else 
+        {
+            GD.Print("Error");
+        }
     }
 }
