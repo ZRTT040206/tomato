@@ -7,8 +7,13 @@ public partial class Main : Node2D
     private Label la;
     private Timer times;
     private int  Couts = 0;
+    private bool[] duis = new bool[4];
     public override void _Ready()
     {
+        for(int i=0;i<4;i++)
+        {
+            duis[i] = true;
+        }
         la = GetNode<Label>("/root/main/Label");
 		times = new Timer(); 
 		this.AddChild(times);
@@ -32,19 +37,28 @@ public partial class Main : Node2D
         String ss = s1 + ':' + s2 + ':' + s3;
         la.Text = ss; // 更新Label文本
     }
+    public void duiss(int i)
+    {
+        duis[i] = true;
+    }
     private void clickButton()
     {
-        if(Couts<600){
-        PackedScene newScene = GD.Load<PackedScene>("res://Mission.tscn");
-        Node nodes = newScene.Instantiate();
-        this.GetTree().CurrentScene.AddChild(nodes);
-        Button buts = nodes.GetNode<Button>("Button");
-        buts.Position = new Vector2(100,100 + Couts); 
-        Couts+=150;
+
+        for(int i=0;i<4;i++){
+            
+            if(!duis[i]){
+                continue;
+            }else{
+                PackedScene newScene = GD.Load<PackedScene>("res://Mission.tscn");
+                Node nodes = newScene.Instantiate();
+                Button buts = nodes.GetNode<Button>("Button");
+                this.GetTree().CurrentScene.AddChild(nodes);
+                nodes.Call("SetMess",i);
+                buts.Position = new Vector2(120,100+130*i); 
+                duis[i] = false;
+                break;
+            }
         }
-        else 
-        {
-            GD.Print("Error");
-        }
+       
     }
 }
