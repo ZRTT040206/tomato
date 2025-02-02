@@ -61,4 +61,12 @@ public partial class Main : Node2D
         }
        
     }
+
+    private void sorts()
+    {
+        for(int i=0;i<4;i++)
+        {
+            var Childs = GetChild<Button>;
+        }
+    }
 }

@@ -120,4 +120,12 @@ offset_right = 156.0
 offset_bottom = 70.0
 text = "新建任务"
 
+[node name="Button2" type="Button" parent="."]
+offset_left = 174.0
+offset_top = 17.0
+offset_right = 310.0
+offset_bottom = 71.0
+text = "排列任务
+"
+
 [connection signal="button_up" from="Button" to="." method="clickButton"]
